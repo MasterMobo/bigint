@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbigint.a CMakeFiles/bigint.dir/bigint/def/constructors.cpp.o CMakeFiles/bigint.dir/bigint/def/getter_setter.cpp.o CMakeFiles/bigint.dir/bigint/operations/add.cpp.o CMakeFiles/bigint.dir/bigint/operations/convert.cpp.o CMakeFiles/bigint.dir/bigint/operations/print.cpp.o
-/usr/bin/ranlib libbigint.a
