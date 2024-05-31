@@ -1,0 +1,10 @@
+/home/khoa/programming/bigint/build/CMakeFiles/edit_cache.dir
+/home/khoa/programming/bigint/build/CMakeFiles/rebuild_cache.dir
+/home/khoa/programming/bigint/build/src/CMakeFiles/bigint.dir
+/home/khoa/programming/bigint/build/src/CMakeFiles/edit_cache.dir
+/home/khoa/programming/bigint/build/src/CMakeFiles/rebuild_cache.dir
+/home/khoa/programming/bigint/build/include/CMakeFiles/edit_cache.dir
+/home/khoa/programming/bigint/build/include/CMakeFiles/rebuild_cache.dir
+/home/khoa/programming/bigint/build/example/CMakeFiles/main.dir
+/home/khoa/programming/bigint/build/example/CMakeFiles/edit_cache.dir
+/home/khoa/programming/bigint/build/example/CMakeFiles/rebuild_cache.dir

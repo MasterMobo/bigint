@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/khoa/programming/bigint/build/src",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/bigint.dir/bigint/def/constructors.cpp.o -c /home/khoa/programming/bigint/src/bigint/def/constructors.cpp",
+  "file": "/home/khoa/programming/bigint/src/bigint/def/constructors.cpp"
+},
+{
+  "directory": "/home/khoa/programming/bigint/build/src",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/bigint.dir/bigint/def/getter_setter.cpp.o -c /home/khoa/programming/bigint/src/bigint/def/getter_setter.cpp",
+  "file": "/home/khoa/programming/bigint/src/bigint/def/getter_setter.cpp"
+},
+{
+  "directory": "/home/khoa/programming/bigint/build/src",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/bigint.dir/bigint/operations/add.cpp.o -c /home/khoa/programming/bigint/src/bigint/operations/add.cpp",
+  "file": "/home/khoa/programming/bigint/src/bigint/operations/add.cpp"
+},
+{
+  "directory": "/home/khoa/programming/bigint/build/src",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/bigint.dir/bigint/operations/convert.cpp.o -c /home/khoa/programming/bigint/src/bigint/operations/convert.cpp",
+  "file": "/home/khoa/programming/bigint/src/bigint/operations/convert.cpp"
+},
+{
+  "directory": "/home/khoa/programming/bigint/build/src",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/bigint.dir/bigint/operations/print.cpp.o -c /home/khoa/programming/bigint/src/bigint/operations/print.cpp",
+  "file": "/home/khoa/programming/bigint/src/bigint/operations/print.cpp"
+},
+{
+  "directory": "/home/khoa/programming/bigint/build/example",
+  "command": "/usr/bin/g++  -I/home/khoa/programming/bigint/src/../include -g -o CMakeFiles/main.dir/main.cpp.o -c /home/khoa/programming/bigint/example/main.cpp",
+  "file": "/home/khoa/programming/bigint/example/main.cpp"
+}
+]
