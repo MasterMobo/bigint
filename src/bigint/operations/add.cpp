@@ -30,7 +30,7 @@ BigInt BigInt::operator+(const BigInt& other)
 		size_t shorti = shorter_s - i - 1;
 		size_t longi = longer_s - i - 1;
 
-		addDigit(longer[longi], shorter[shorti], sum, carry, radix);
+		addDigits(longer[longi], shorter[shorti], sum, carry, radix);
 
 		res[longi] = sum;
 	}
@@ -38,7 +38,7 @@ BigInt BigInt::operator+(const BigInt& other)
 	for (size_t i = shorter_s; i < longer_s; i++) {
 		size_t longi = longer_s - i - 1;
 
-		addDigit(longer[longi], 0, sum, carry, radix);
+		addDigits(longer[longi], 0, sum, carry, radix);
 
 		res[longi] = sum;
 	}
@@ -51,19 +51,14 @@ BigInt BigInt::operator+(const BigInt& other)
 	return BigInt(res, this->radix);
 }
 
-void BigInt::addDigit(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix) {
+void BigInt::addDigits(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix) {
 	sum = n1 + n2 + carry;
+	carry = 0;
 
-	if (sum >= radix) {
-		carry = 1;
-		sum %= radix;
-	}
-	else if (sum < n1) {
-		// Overflow for unsigned int
-		// Overflow should already be the remainder, so no need to take mod here
+	if (sum >= radix || sum < n1) {
+		// sum < n1 (or equivalently, sum < n2) when overflow for unsigned int
 		carry = 1;
 	}
-	else {
-		carry = 0;
-	}
+
+	sum %= radix;
 }

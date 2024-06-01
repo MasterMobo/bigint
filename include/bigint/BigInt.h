@@ -14,10 +14,12 @@ class BigInt
 	private:
 		std::vector<BaseType> digits;
 		BaseType radix;
-		void addDigit(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix);
+
+		void addDigits(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix);
 		
 
 	public:
+		BigInt();
 		BigInt(BaseType radix);
 		BigInt(std::vector<BaseType>, BaseType radix);
 		BigInt(std::string s, BaseType radix);

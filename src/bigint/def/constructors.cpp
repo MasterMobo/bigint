@@ -1,7 +1,13 @@
 #include <vector>
 #include <string>
+#include <climits>
 
 #include "bigint/BigInt.h"
+
+
+BigInt::BigInt(){
+	radix = ULLONG_MAX;
+}
 
 BigInt::BigInt(BigInt::BaseType radix): radix(radix) {
 	
