@@ -37,9 +37,8 @@ class BigInt
 		/*
 			The sign of the number.
 
+			1 for Positive or Zero
 			-1 for Negative
-			0 for Zero
-			1 for Positive
 
 			Will be positive by default.
 		*/
@@ -67,8 +66,8 @@ class BigInt
 		// Operations
 		BigInt operator+(const BigInt& other);
 		BigInt operator+=(const BigInt& other);
-		BigInt operator++();
-		BigInt operator++();
+		BigInt& operator++(); // Prefix increment
+		BigInt operator++(int n);	// Postfix increment
 
 
 		// Comparisons

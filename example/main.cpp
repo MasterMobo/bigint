@@ -18,7 +18,11 @@ int main() {
 
     BigInt n3 = n1 + n2;
 
-    std::cout << n1.toString() << std::endl;
+    // std::cout << n1.toString() << std::endl;
+    // std::cout << (++n1).toString() << std::endl;
+    // std::cout << n1++.toString() << std::endl;
+    // std::cout << n1.toString() << std::endl;
+    
     std::cout << n3.toString() << std::endl;
     // std::cout << (n1 == n2) << std::endl;
     // std::cout << (n1 != n2) << std::endl;

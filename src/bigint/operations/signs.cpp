@@ -7,7 +7,3 @@ void BigInt::makePositive() {
 void BigInt::makeNegative() {
     sign = -1;
 }
-
-void BigInt::makeZeroSign() {
-    sign = 0;
-}

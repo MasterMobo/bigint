@@ -63,3 +63,40 @@ BigInt BigInt::operator+(const BigInt& other)
 	return BigInt(res, this->radix);
 }
 
+BigInt BigInt::operator+=(const BigInt& other) {
+	*this = *this + other;
+	return *this;
+}
+
+// Prefix increment
+BigInt& BigInt::operator++() {
+	// TODO: this is just stupid
+
+	std::vector<BigInt::BaseType> v;
+
+	v.push_back(1);
+	BigInt one = BigInt(v, radix);
+
+	*this = *this + one;
+
+	return *this;
+};
+
+// Postfix increment
+BigInt BigInt::operator++(int n) {
+	// TODO: this is just stupid
+	BigInt prev = *this;
+
+	std::vector<BigInt::BaseType> v;
+
+	if (n != 0) {
+		v.push_back(n);
+	} else {
+		v.push_back(1);
+	}
+	BigInt other = BigInt(v, radix);
+
+	*this = *this + other;
+
+	return prev;
+};
