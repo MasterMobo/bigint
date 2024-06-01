@@ -66,6 +66,7 @@ class BigInt
 		// Operations
 
 		// Addition
+		BigInt sumAbs(const BigInt& n1, const BigInt& n2);
 		BigInt operator+(const BigInt& other);
 		BigInt operator+=(const BigInt& other);
 		BigInt& operator++(); // Prefix increment
@@ -73,6 +74,8 @@ class BigInt
 
 		// Subtraction
 		BigInt operator-(const BigInt& other);
+		BigInt operator-() const;
+
 
 
 		// Comparisons
