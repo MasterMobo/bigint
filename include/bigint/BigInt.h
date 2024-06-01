@@ -20,6 +20,7 @@ class BigInt
 		typedef unsigned long long int BaseType;
 
 	private:
+		// TODO: Change this to little endian to help with addition and substraction
 		/*
 			Vector containing all the digits in big-endian fashion.
 			Ex: 0x456 is represented as [4, 5, 6]
@@ -57,10 +58,10 @@ class BigInt
 		std::string toString();
 
 		std::vector<BaseType> getDigits();
+
 		void makePositive();
 		void makeNegative();
 		void makeZeroSign();
-
 		static std::vector<BaseType> fromString(std::string s);
 
 		// Operations
@@ -86,10 +87,6 @@ class BigInt
 		bool operator>=(const BigInt& other);
 		bool operator<(const BigInt& other);
 		bool operator<=(const BigInt& other);
-
-
-
-
 };
 
 #endif
