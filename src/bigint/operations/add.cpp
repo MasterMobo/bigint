@@ -38,8 +38,6 @@ BigInt BigInt::operator+(const BigInt& other)
 	for (size_t i = shorter_s; i < longer_s; i++) {
 		size_t longi = longer_s - i - 1;
 
-		sum = longer[longi] + carry;
-
 		addDigit(longer[longi], 0, sum, carry, radix);
 
 		res[longi] = sum;
