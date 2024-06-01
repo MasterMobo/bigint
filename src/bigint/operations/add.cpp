@@ -1,67 +1,71 @@
-#include <iostream>
 #include <vector>
-#include <string>
-#include <algorithm>
+#include <iostream>
 
 #include "bigint/BigInt.h"
 
-BigInt BigInt::operator+(BigInt & other)
+BigInt BigInt::operator+(const BigInt& other)
 {	
 	if (this->radix != other.radix) {
 		throw std::invalid_argument("Radix don't match");
 	}
 
-	std::vector<BigInt::BaseType> res;
 
-	std::vector<BigInt::BaseType>::reverse_iterator thisRit = this->digits.rbegin();
-	std::vector<BigInt::BaseType>::reverse_iterator otherRit = other.digits.rbegin();
+	std::vector<BigInt::BaseType> longer = this->digits;
+	std::vector<BigInt::BaseType> shorter = other.digits;
 
-	std::vector<BigInt::BaseType>::reverse_iterator thisEnd = this->digits.rend();
-	std::vector<BigInt::BaseType>::reverse_iterator otherEnd = other.digits.rend();
+	if (this->digits.size() < other.digits.size()) {
+		longer = other.digits;
+		shorter = this->digits;
+	}
 
-	BigInt::BaseType thisVal = 0;
-	BigInt::BaseType otherVal = 0;
-		
-	BigInt::BaseType carry = 0;
+	size_t longer_s = longer.size();
+	size_t shorter_s = shorter.size();
+
+	std::vector<BigInt::BaseType> res (longer_s, 0);
+
+	int carry = 0;
 	BigInt::BaseType sum;
 
-	while (thisRit != thisEnd || otherRit != otherEnd){
-		sum = carry;
+	for (size_t i = 0; i < shorter_s; i++) {
+		size_t shorti = shorter_s - i - 1;
+		size_t longi = longer_s - i - 1;
 
-		if (thisRit != thisEnd) {
-			thisVal = *thisRit;
-			sum += thisVal;
-			thisRit++;	
-		}
+		addDigit(longer[longi], shorter[shorti], sum, carry, radix);
 
-		if (otherRit != otherEnd) {
-			otherVal = *otherRit;
-			sum += otherVal;
-			otherRit++;
-		}
+		res[longi] = sum;
+	}
 
-		if (sum >= radix) {
-			carry = 1;
-			sum %= radix;
-		} 
-		else if (sum < thisVal ||  sum < otherVal) {
-			// Overflow for unsigned int
-			// Overflow should already be the remainder, so no need to take mod here
-			carry = 1;
-		}
-		else {
-			carry = 0;
-		}
+	for (size_t i = shorter_s; i < longer_s; i++) {
+		size_t longi = longer_s - i - 1;
 
-		res.push_back(sum);
+		sum = longer[longi] + carry;
+
+		addDigit(longer[longi], 0, sum, carry, radix);
+
+		res[longi] = sum;
 	}
 
 	// Add remaining carry
 	if (carry != 0) {
-		res.push_back(carry);
+		res.insert(res.begin(), carry);
 	}
 
-	std::reverse(res.begin(), res.end());
-
 	return BigInt(res, this->radix);
+}
+
+void BigInt::addDigit(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix) {
+	sum = n1 + n2 + carry;
+
+	if (sum >= radix) {
+		carry = 1;
+		sum %= radix;
+	}
+	else if (sum < n1) {
+		// Overflow for unsigned int
+		// Overflow should already be the remainder, so no need to take mod here
+		carry = 1;
+	}
+	else {
+		carry = 0;
+	}
 }

@@ -7,13 +7,21 @@
 int main() {
     std::vector<BigInt::BaseType> v1;
     v1.push_back(1);
-    v1.push_back(ULLONG_MAX - 1);
-    BigInt n1 = BigInt(v1, ULLONG_MAX);
+    v1.push_back(2);
+    BigInt n1 = BigInt(v1, 10);
 
     std::vector<BigInt::BaseType> v2;
     v2.push_back(1);
-    BigInt n2 = BigInt(v2, ULLONG_MAX);
+    v2.push_back(1);
+    v2.push_back(2);
+    BigInt n2 = BigInt(v2, 10);
 
-    BigInt n3 = n1 + n2;
-    n3.display();
+    std::cout << (n1 == n2) << std::endl;
+    std::cout << (n1 != n2) << std::endl;
+    std::cout << (n1 > n2) << std::endl;
+    std::cout << (n1 >= n2) << std::endl;
+    std::cout << (n1 < n2) << std::endl;
+    std::cout << (n1 <= n2) << std::endl;
+
+    return 0;
 }
