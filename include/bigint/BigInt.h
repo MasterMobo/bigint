@@ -64,13 +64,19 @@ class BigInt
 		static std::vector<BaseType> fromString(std::string s);
 
 		// Operations
+
+		// Addition
 		BigInt operator+(const BigInt& other);
 		BigInt operator+=(const BigInt& other);
 		BigInt& operator++(); // Prefix increment
 		BigInt operator++(int n);	// Postfix increment
 
+		// Subtraction
+		BigInt operator-(const BigInt& other);
+
 
 		// Comparisons
+		signed char compareAbs(const BigInt& n1, const BigInt& n2);
 		bool operator==(const BigInt& other);
 		bool operator!=(const BigInt& other);
 		bool operator>(const BigInt& other);

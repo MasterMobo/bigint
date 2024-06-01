@@ -15,8 +15,7 @@ void BigInt::addDigits(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseTyp
 	sum %= radix;
 }
 
-BigInt BigInt::operator+(const BigInt& other)
-{	
+BigInt BigInt::operator+(const BigInt& other) {	
 	if (this->radix != other.radix) {
 		throw std::invalid_argument("Radix don't match");
 	}
