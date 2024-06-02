@@ -22,10 +22,10 @@ class BigInt
 	private:
 		// TODO: Change this to little endian to help with addition and substraction
 		/*
-			Vector containing all the digits in big-endian fashion.
-			Ex: 0x456 is represented as [4, 5, 6]
+			Vector containing all the digits in little-endian (reversed) fashion.
+			Ex: 0x456 is represented as [6, 5, 4]
 
-			No leading zeros. I.e, [0, 0, 1, 3] is not accepted.
+			No trailing zeros. I.e, [1, 3, 0 , 0] is not accepted.
 		*/
 		std::vector<BaseType> digits;
 

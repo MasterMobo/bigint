@@ -21,34 +21,24 @@ BigInt BigInt::sumAbs(const BigInt& n1, const BigInt& n2) {
 		shorter = n1.digits;
 	}
 
-	size_t longerS = longer.size();
-	size_t shorterS = shorter.size();
-
-	std::vector<BaseType> res (longerS, 0);
+	std::vector<BaseType> res (longer.size(), 0);
 
 	int carry = 0;
 	BaseType sum;
 
-	for (size_t i = 0; i < shorterS; i++) {
-		size_t shorti = shorterS - i - 1;
-		size_t longi = longerS - i - 1;
-
-		addDigits(longer[longi], shorter[shorti], sum, carry, radix);
-
-		res[longi] = sum;
+	for (size_t i = 0; i < shorter.size(); i++) {
+		addDigits(longer[i], shorter[i], sum, carry, radix);
+		res[i] = sum;
 	}
 
-	for (size_t i = shorterS; i < longerS; i++) {
-		size_t longi = longerS - i - 1;
-
-		addDigits(longer[longi], 0, sum, carry, radix);
-
-		res[longi] = sum;
+	for (size_t i = shorter.size(); i < longer.size(); i++) {
+		addDigits(longer[i], 0, sum, carry, radix);
+		res[i] = sum;
 	}
 
 	// Add remaining carry
 	if (carry != 0) {
-		res.insert(res.begin(), carry);
+		res.push_back(carry);
 	}
 
 	return BigInt(res, radix);

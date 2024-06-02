@@ -15,7 +15,7 @@ signed char BigInt::compareAbs(const BigInt& n1, const BigInt& n2) {
     if (n1.digits.size() > n2.digits.size()) return 1;
     if (n1.digits.size() < n2.digits.size()) return -1;
 
-    for (size_t i = 0; i < n1.digits.size(); i++) {
+    for (int i = n1.digits.size() - 1; i >= 0; i--) {
         if (n1.digits[i] < n2.digits[i]) {
             return -1;
         } else if (n1.digits[i] > n2.digits[i]) {

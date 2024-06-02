@@ -9,8 +9,8 @@ std::string BigInt::toString() {
 		s.append("-");
 	}
 
-	for (BigInt::BaseType digit: this->digits) {
-		s.append(std::to_string(digit));
+	for (int i = digits.size() - 1; i >= 0; i--) {
+		s.append(std::to_string(digits[i]));
 		s.append(" ");
 	}
 

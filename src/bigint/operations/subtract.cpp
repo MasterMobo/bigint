@@ -44,15 +44,11 @@ BigInt BigInt::operator-(const BigInt& other) {
     char carry = 0;
     BaseType diff;
 
-    for (size_t i = 0; i < smaller.size(); i++) {
-        size_t smalli = smaller.size() - i - 1;
-        size_t bigi = bigger.size() - i - 1;
-
-        BaseType n1 = bigger[bigi];
-        BaseType n2 = smaller[smalli];
+    for (int i = 0; i < smaller.size(); i++) {
+        BaseType n1 = bigger[i];
+        BaseType n2 = smaller[i];
 
         // TODO: watch out for overflow n2 + carry
-
         if (n1 >= n2 + carry) {
             diff = n1 - (n2 + carry);
             carry = 0;
@@ -62,13 +58,11 @@ BigInt BigInt::operator-(const BigInt& other) {
             carry = 1;
         }
 
-        resDigits[bigi] = diff;
+        resDigits[i] = diff;
     } 
 
     for (size_t i = smaller.size(); i < bigger.size(); i++) {
-        size_t bigi = bigger.size() - i - 1;
-
-        BaseType n1 = bigger[bigi];
+        BaseType n1 = bigger[i];
         // TODO: watch out for overflow n2 + carry
 
         if (n1 >= carry) {
@@ -80,10 +74,10 @@ BigInt BigInt::operator-(const BigInt& other) {
             carry = 1;
         }
 
-        resDigits[bigi] = diff;
-    } 
+        resDigits[i] = diff;
+    }
 
-    // TODO: Need to remove leading 0's
+    // TODO: Need to remove trailing 0's
     res.digits = resDigits;
     return res;
 }
