@@ -1,11 +1,12 @@
 #include "utils.h"
 
-#include <string>;
-#include <algorithm>;
+#include <string>
+#include <algorithm>
+
+// Source: https://stackoverflow.com/a/62083923
 
 std::string binToDec(std::string num) {
     // Convert binary string to decimal string
-    // Source: https://stackoverflow.com/a/62083923
 
     // Here we will store the resulting output
     std::string result{};

@@ -9,15 +9,12 @@
 
 class BigInt
 {
-
-	public:
+	private:
 		typedef unsigned long long int BaseType;
 		static const int BITS_PER_DIGIT = 32; 
 		static const BaseType RADIX = 4294967296; // 2^32 
 		static const BaseType MAX_DIGIT_VALUE = RADIX - 1; // 2^32 - 1. The maximum value each digit can hold.
-
-	private:
-		// TODO: Change this to little endian to help with addition and substraction
+		
 		/*
 			Vector containing all the digits in little-endian (reversed) fashion.
 			Ex: 0x456 is represented as [6, 5, 4]
@@ -36,25 +33,24 @@ class BigInt
 		*/
 		signed char sign = 1;
 
-		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
-		
-
 	public:
 		BigInt();
-		BigInt(std::vector<BaseType>);
+
+		// BigInt from decimal string
+		BigInt(std::string s);
+
 		// TODO: add destructor
 
-		// String conversions;
+		// String conversions
 		std::string toRawString();
 		static BigInt fromBinString(std::string s);
 		std::string toBinString();
 		static BigInt fromDecString(std::string s);
 		std::string toDecString();
 		
+		// TODO: make these private after implement sign in string conversion
 		void makePositive();
 		void makeNegative();
-		void makeZeroSign();
-		static std::vector<BaseType> fromString(std::string s);
 
 		// Operations
 
@@ -67,9 +63,8 @@ class BigInt
 
 		// Subtraction
 		BigInt operator-(const BigInt& other);
-		BigInt operator-() const;
-
-
+		BigInt operator-() const;	// Invert sign
+		// TODO: add more subtract operations
 
 		// Comparisons
 		signed char compareAbs(const BigInt& n1, const BigInt& n2);
@@ -79,6 +74,10 @@ class BigInt
 		bool operator>=(const BigInt& other);
 		bool operator<(const BigInt& other);
 		bool operator<=(const BigInt& other);
+
+	private:
+		BigInt(std::vector<BaseType>);
+		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
 };
 
 #endif

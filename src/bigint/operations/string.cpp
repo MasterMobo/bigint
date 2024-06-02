@@ -6,24 +6,6 @@
 #include <climits>
 #include <bitset>
 
-std::string padZerosStart(std::string s, int length) {
-	/*
-		Pad 0's to beginning to statisfy length
-		Params:
-			s (string): The string to be padded
-			length (int): desired length after padding
-		Returns: New string padded with 0's
-	*/
-	if (s.size() == length) return s;
-
-	std::string res = s;
-
-	unsigned int number_of_zeros = length - res.length();
-	res.insert(0, number_of_zeros, '0');
-
-	return res;
-}
-
 std::string BigInt::toRawString() {
 	std::string s;
 
@@ -53,7 +35,7 @@ BigInt BigInt::fromBinString(std::string s) {
 		std::string sub = s.substr(0, leftOver);
 
 		// Pad 0's to beginning to make length 32  
-		sub = padZerosStart(sub, 32);
+		sub = padLeadingZeros(sub, 32);
 
 		BaseType val = std::stoul(sub, 0, 2);
 
@@ -77,11 +59,11 @@ std::string BigInt::toBinString() {
 	std::string s;
 	for (int i = digits.size() - 1; i >= 0; i--) {
 		std::string chunk = std::bitset<BITS_PER_DIGIT>(digits[i]).to_string(); // Assuming int is 8 bits
-		chunk = padZerosStart(chunk, 32);
+		chunk = padLeadingZeros(chunk, 32);
 
 		s.append(chunk);
 	}
-	return s;
+	return pruneLeadingZeros(s);
 }
 
 BigInt BigInt::fromDecString(std::string s) {

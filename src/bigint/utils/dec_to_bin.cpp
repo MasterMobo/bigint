@@ -1,24 +1,8 @@
 #include "utils.h"
 
 #include <string>
-#include <iostream>
 
 // Source: https://stackoverflow.com/a/11007021
-
-std::string pruneLeadingZeros(std::string s) {
-    // Remove leading zeros from a string
-    int firstNonZero = -1;
-    for (int i = 0; i < s.length(); i++) {
-        if (s[i] != '0') {
-            firstNonZero = i;
-            break;
-        }
-    }
-
-    if (firstNonZero == -1) return "0";
-
-    return s.substr(firstNonZero, s.length() - firstNonZero);
-}
 
 std::string decDiv2(std::string num) {
     // Divide (string representation of) decimal number by two
