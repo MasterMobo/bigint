@@ -1,10 +1,30 @@
+#include "bigint/BigInt.h"
+#include "../utils/utils.h"
+
 #include <string>
 #include <iostream>
 #include <climits>
+#include <bitset>
 
-#include "bigint/BigInt.h"
+std::string padZerosStart(std::string s, int length) {
+	/*
+		Pad 0's to beginning to statisfy length
+		Params:
+			s (string): The string to be padded
+			length (int): desired length after padding
+		Returns: New string padded with 0's
+	*/
+	if (s.size() == length) return s;
 
-std::string BigInt::toString() {
+	std::string res = s;
+
+	unsigned int number_of_zeros = length - res.length();
+	res.insert(0, number_of_zeros, '0');
+
+	return res;
+}
+
+std::string BigInt::toRawString() {
 	std::string s;
 
 	if (sign == -1) {
@@ -20,7 +40,8 @@ std::string BigInt::toString() {
 }
 
 BigInt BigInt::fromBinString(std::string s) {
-	const int len = s.length();
+	// TODO: Remove leading zeros and check for signs
+	const int len = s.size();
 	const int baseTypeSize = BITS_PER_DIGIT;
 	const int wholeParts = len / baseTypeSize;
 	const int leftOver = len % baseTypeSize;
@@ -29,11 +50,10 @@ BigInt BigInt::fromBinString(std::string s) {
 	BaseType currentDigit;
 
 	if (leftOver != 0) {
-		std::string sub = s.substr(0, leftOver );
+		std::string sub = s.substr(0, leftOver);
 
 		// Pad 0's to beginning to make length 32  
-		unsigned int number_of_zeros = baseTypeSize - sub.length();
-		sub.insert(0, number_of_zeros, '0');
+		sub = padZerosStart(sub, 32);
 
 		BaseType val = std::stoul(sub, 0, 2);
 
@@ -55,5 +75,23 @@ BigInt BigInt::fromBinString(std::string s) {
 
 std::string BigInt::toBinString() {
 	std::string s;
+	for (int i = digits.size() - 1; i >= 0; i--) {
+		std::string chunk = std::bitset<BITS_PER_DIGIT>(digits[i]).to_string(); // Assuming int is 8 bits
+		chunk = padZerosStart(chunk, 32);
+
+		s.append(chunk);
+	}
 	return s;
 }
+
+BigInt BigInt::fromDecString(std::string s) {
+	// TODO: Remove leading zeros and check for signs
+
+	return fromBinString(decToBin(s));
+}
+
+std::string BigInt::toDecString() {
+	std::string s (sign == -1 ? "-" : "");
+	s.append(binToDec(toBinString())); 
+	return s;
+};

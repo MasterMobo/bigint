@@ -44,9 +44,12 @@ class BigInt
 		BigInt(std::vector<BaseType>);
 		// TODO: add destructor
 
-		std::string toString();
+		// String conversions;
+		std::string toRawString();
 		static BigInt fromBinString(std::string s);
 		std::string toBinString();
+		static BigInt fromDecString(std::string s);
+		std::string toDecString();
 		
 		void makePositive();
 		void makeNegative();

@@ -1,7 +1,8 @@
+#include "bigint/BigInt.h"
+
 #include <vector>
 #include <iostream>
 
-#include "bigint/BigInt.h"
 
 BigInt BigInt::sumAbs(const BigInt& n1, const BigInt& n2) {
 	/*

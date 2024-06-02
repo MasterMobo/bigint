@@ -1,7 +1,8 @@
+#include "bigint/BigInt.h"
+
 #include <vector>
 #include <iostream>
 
-#include "bigint/BigInt.h"
 
 signed char BigInt::compareAbs(const BigInt& n1, const BigInt& n2) {
     /*

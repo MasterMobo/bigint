@@ -1,6 +1,7 @@
+#include "bigint/BigInt.h"
+
 #include <iostream>
 
-#include "bigint/BigInt.h"
 
 BigInt BigInt::operator-(const BigInt& other) {
     // FIXME: The most braindead code possible
