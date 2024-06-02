@@ -8,11 +8,6 @@ BigInt BigInt::sumAbs(const BigInt& n1, const BigInt& n2) {
 		Adds the absolute value of two BigInt.
 		Returns: The sum of the absolute value of two BigInt
 	*/
-	if (n1.radix != n2.radix) {
-		throw std::invalid_argument("Radix don't match");
-	}
-
-
 	std::vector<BaseType> longer = n1.digits;
 	std::vector<BaseType> shorter = n2.digits;
 
@@ -27,12 +22,12 @@ BigInt BigInt::sumAbs(const BigInt& n1, const BigInt& n2) {
 	BaseType sum;
 
 	for (size_t i = 0; i < shorter.size(); i++) {
-		addDigits(longer[i], shorter[i], sum, carry, radix);
+		addDigits(longer[i], shorter[i], sum, carry);
 		res[i] = sum;
 	}
 
 	for (size_t i = shorter.size(); i < longer.size(); i++) {
-		addDigits(longer[i], 0, sum, carry, radix);
+		addDigits(longer[i], 0, sum, carry);
 		res[i] = sum;
 	}
 
@@ -41,20 +36,19 @@ BigInt BigInt::sumAbs(const BigInt& n1, const BigInt& n2) {
 		res.push_back(carry);
 	}
 
-	return BigInt(res, radix);
+	return BigInt(res);
 }
 
 
-void BigInt::addDigits(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix) {
+void BigInt::addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry) {
 	sum = n1 + n2 + carry;
 	carry = 0;
 
-	if (sum >= radix || sum < n1) {
-		// sum < n1 (or equivalently, sum < n2) when overflow for unsigned int
+	if (sum >= RADIX) {
 		carry = 1;
 	}
 
-	sum %= radix;
+	sum %= RADIX;
 }
 
 BigInt BigInt::operator+(const BigInt& other) {	
@@ -91,7 +85,7 @@ BigInt& BigInt::operator++() {
 	std::vector<BigInt::BaseType> v;
 
 	v.push_back(1);
-	BigInt one = BigInt(v, radix);
+	BigInt one = BigInt(v);
 
 	*this = *this + one;
 
@@ -110,7 +104,7 @@ BigInt BigInt::operator++(int n) {
 	} else {
 		v.push_back(1);
 	}
-	BigInt other = BigInt(v, radix);
+	BigInt other = BigInt(v);
 
 	*this = *this + other;
 

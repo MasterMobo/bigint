@@ -5,19 +5,16 @@
 
 #include <string>
 #include <vector>
+#include <climits>
 
 class BigInt
 {
-	public:
-		/* 
-			The data type to represent each digit.
-			The bigger the type, the more each digit can store.
-			Ex: unsigned long long int can store 64 bits in each digit.
 
-			Should be kept unchanged. But if needed, 
-			make sure that BaseType is big enough to represent the radix.
-		*/
+	public:
 		typedef unsigned long long int BaseType;
+		static const int BITS_PER_DIGIT = 32; 
+		static const BaseType RADIX = 4294967296; // 2^32 
+		static const BaseType MAX_DIGIT_VALUE = RADIX - 1; // 2^32 - 1. The maximum value each digit can hold.
 
 	private:
 		// TODO: Change this to little endian to help with addition and substraction
@@ -30,12 +27,6 @@ class BigInt
 		std::vector<BaseType> digits;
 
 		/*
-			The radix (or base) of the number. 
-			CAN NOT be bigger than maximum value of BaseType.
-		*/
-		BaseType radix;
-
-		/*
 			The sign of the number.
 
 			1 for Positive or Zero
@@ -45,20 +36,18 @@ class BigInt
 		*/
 		signed char sign = 1;
 
-		void addDigits(BigInt::BaseType n1, BigInt::BaseType n2, BigInt::BaseType& sum, int& carry, BigInt::BaseType radix);
+		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
 		
 
 	public:
 		BigInt();
-		BigInt(BaseType radix);
-		BigInt(std::vector<BaseType>, BaseType radix);
-		BigInt(std::string s, BaseType radix);
+		BigInt(std::vector<BaseType>);
 		// TODO: add destructor
 
 		std::string toString();
-
-		std::vector<BaseType> getDigits();
-
+		static BigInt fromBinString(std::string s);
+		std::string toBinString();
+		
 		void makePositive();
 		void makeNegative();
 		void makeZeroSign();

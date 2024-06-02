@@ -3,10 +3,6 @@
 #include "bigint/BigInt.h"
 
 BigInt BigInt::operator-(const BigInt& other) {
-    if (this->radix != other.radix) {
-		throw std::invalid_argument("Radix don't match");
-	}
-
     // FIXME: The most braindead code possible
     if (this->sign == -1) {
         if (other.sign == 1) {
@@ -25,7 +21,7 @@ BigInt BigInt::operator-(const BigInt& other) {
 
     // Only possible case left is if both are positive
 
-    BigInt res = BigInt(radix);
+    BigInt res = BigInt();
     res.sign = 1;
 
 
@@ -54,7 +50,7 @@ BigInt BigInt::operator-(const BigInt& other) {
             carry = 0;
         }
         else {
-            diff = radix - (n2 + carry - n1);
+            diff = RADIX - (n2 + carry - n1);
             carry = 1;
         }
 
@@ -63,14 +59,13 @@ BigInt BigInt::operator-(const BigInt& other) {
 
     for (size_t i = smaller.size(); i < bigger.size(); i++) {
         BaseType n1 = bigger[i];
-        // TODO: watch out for overflow n2 + carry
 
         if (n1 >= carry) {
             diff = n1 - carry;
             carry = 0;
         }
         else {
-            diff = radix - (carry - n1);
+            diff = RADIX - (carry - n1);
             carry = 1;
         }
 
