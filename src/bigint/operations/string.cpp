@@ -57,13 +57,13 @@ BigInt BigInt::fromBinString(std::string s) {
 
 std::string BigInt::toBinString() {
 	std::string s;
+
 	for (int i = digits.size() - 1; i >= 0; i--) {
 		std::string chunk = std::bitset<BITS_PER_DIGIT>(digits[i]).to_string(); // Assuming int is 8 bits
-		chunk = padLeadingZeros(chunk, 32);
-
 		s.append(chunk);
 	}
-	return pruneLeadingZeros(s);
+
+	return s;
 }
 
 BigInt BigInt::fromDecString(std::string s) {
