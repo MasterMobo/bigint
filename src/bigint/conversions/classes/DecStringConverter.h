@@ -24,10 +24,12 @@ class DecStringConverter: public StringEncoder, public StringDecoder {
             std::string s;
 
             std::string binString = binConverter.toString(bigInt);
-            if (bigInt.getSign() == -1) {
-                s.append("-");
-            } 
+
             s.append(binToDec(binString)); 
+
+            if (bigInt.getSign() == -1) {
+                s.insert(0, "-");
+            } 
 
             return s;
         }

@@ -50,9 +50,10 @@ class BinStringConverter: public StringEncoder, public StringDecoder {
 
             s = pruneLeadingZeros(s);
             
-            if (bigInt.getSign() == -1) {
-                s.insert(0, "-");
-            }
+            // FIXME: This is broken when used for dec converter
+            // if (bigInt.getSign() == -1) {
+            //     s.insert(0, "-");
+            // }
 
             return s;
         };
