@@ -2,6 +2,7 @@
 #include "../utils/utils.h"
 
 #include "./classes/BinStringConverter.h"
+#include "./classes/DecStringConverter.h"
 
 #include <string>
 #include <iostream>
@@ -9,13 +10,11 @@
 #include <bitset>
 
 BigInt BigInt::fromBinString(std::string s) {
-	BinStringConverter converter = BinStringConverter();
+	BinStringConverter converter;
     return converter.fromString(s);
-    // return s;
 }
 
 BigInt BigInt::fromDecString(std::string s) {
-	// TODO: Remove leading zeros and check for signs
-
-	return fromBinString(decToBin(s));
+	DecStringConverter converter;
+	return converter.fromString(s);
 }

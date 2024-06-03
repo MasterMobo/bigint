@@ -53,8 +53,6 @@ void BigInt::addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry) {
 }
 
 BigInt BigInt::operator+(const BigInt& other) {	
-
-	// FIXME: The most braindead code possible
 	if (this->sign == -1) {
 		if (other.sign == -1) {
 			BigInt res = sumAbs(*this, other);
@@ -81,31 +79,20 @@ BigInt BigInt::operator+=(const BigInt& other) {
 
 // Prefix increment
 BigInt& BigInt::operator++() {
-	// TODO: this is just stupid
-
-	std::vector<BigInt::BaseType> v;
-
-	v.push_back(1);
-	BigInt one = BigInt(v);
-
-	*this = *this + one;
-
+	*this = *this + BigInt("1");
 	return *this;
 };
 
 // Postfix increment
 BigInt BigInt::operator++(int n) {
-	// TODO: this is just stupid
 	BigInt prev = *this;
 
-	std::vector<BaseType> v;
-
+	BigInt other;
 	if (n != 0) {
-		v.push_back(n);
+		other = BigInt(std::to_string(n));
 	} else {
-		v.push_back(1);
+		other = BigInt("1");
 	}
-	BigInt other = BigInt(v);
 
 	*this = *this + other;
 

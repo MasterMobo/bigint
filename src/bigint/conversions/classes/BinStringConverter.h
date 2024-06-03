@@ -3,16 +3,15 @@
 #ifndef BIN_STRING_CONVERTER_H
 #define BIN_STRING_CONVERTER_H
 
-#include "./StringConverter.h"
+#include "./StringEncoder.h"
+#include "./StringDecoder.h"
 #include "../../utils/utils.h"
 
 #include <bitset>
 #include <vector>
 
-class BinStringConverter: public StringConverter {
-    public:
-        BinStringConverter() {};
-        
+class BinStringConverter: public StringEncoder, public StringDecoder {
+    public:        
         BigInt fromString(std::string s) override {
             // TODO: Remove leading zeros and check for signs
             const int len = s.size();
@@ -45,11 +44,17 @@ class BinStringConverter: public StringConverter {
             std::string s;
 
             for (int i = digits.size() - 1; i >= 0; i--) {
-                std::string chunk = std::bitset<BigInt::BITS_PER_DIGIT>(digits[i]).to_string(); // Assuming int is 8 bits
+                std::string chunk = std::bitset<BigInt::BITS_PER_DIGIT>(digits[i]).to_string(); 
                 s.append(chunk);
             }
 
-            return pruneLeadingZeros(s);
+            s = pruneLeadingZeros(s);
+            
+            if (bigInt.getSign() == -1) {
+                s.insert(0, "-");
+            }
+
+            return s;
         };
 };
 

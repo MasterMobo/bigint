@@ -43,6 +43,7 @@ class BigInt
 
 		// Getters & Setters
 		std::vector<BaseType> getDigits() const {return digits;};
+		signed char getSign() const {return sign;}; 
 
 		// String conversions
 		std::string toRawString();
@@ -64,21 +65,27 @@ class BigInt
 		BigInt operator++(int n);	// Postfix increment
 
 		// Subtraction
+		BigInt subtractAbs(const BigInt& n1, const BigInt& n2);
 		BigInt operator-(const BigInt& other);
 		BigInt operator-() const;	// Invert sign
+		BigInt operator-=(const BigInt& other);
+		BigInt& operator--(); // Prefix decrement
+		BigInt operator--(int n);	// Postfix decrement
+		
 		// TODO: add more subtract operations
 
 		// Comparisons
-		signed char compareAbs(const BigInt& n1, const BigInt& n2);
-		bool operator==(const BigInt& other);
-		bool operator!=(const BigInt& other);
-		bool operator>(const BigInt& other);
-		bool operator>=(const BigInt& other);
-		bool operator<(const BigInt& other);
-		bool operator<=(const BigInt& other);
+		signed char compareAbs(const BigInt& n1, const BigInt& n2) const;
+		bool operator==(const BigInt& other) const;
+		bool operator!=(const BigInt& other) const;
+		bool operator>(const BigInt& other) const;
+		bool operator>=(const BigInt& other) const;
+		bool operator<(const BigInt& other) const;
+		bool operator<=(const BigInt& other) const;
 
 	private:
 		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
+		void subtractDigits(BaseType n1, BaseType n2, BaseType& diff, int& carry);
 };
 
 #endif

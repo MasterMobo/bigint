@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-signed char BigInt::compareAbs(const BigInt& n1, const BigInt& n2) {
+signed char BigInt::compareAbs(const BigInt& n1, const BigInt& n2) const {
     /*
     Compare absolute value of two BigInt.
     Returns:
@@ -27,17 +27,17 @@ signed char BigInt::compareAbs(const BigInt& n1, const BigInt& n2) {
     return 0;
 }
 
-bool BigInt::operator==(const BigInt& other) {
+bool BigInt::operator==(const BigInt& other) const {
     if (this->sign != other.sign) return false;
 
     return compareAbs(*this, other) == 0;
 }
 
-bool BigInt::operator!=(const BigInt& other) {
+bool BigInt::operator!=(const BigInt& other) const {
     return !(*this == other);
 }
 
-bool BigInt::operator>(const BigInt& other) {
+bool BigInt::operator>(const BigInt& other) const {
     if (this->sign != other.sign)
         return this->sign > other.sign;
 
@@ -52,7 +52,7 @@ bool BigInt::operator>(const BigInt& other) {
 }
 
 
-bool BigInt::operator>=(const BigInt& other) {
+bool BigInt::operator>=(const BigInt& other) const {
     if (this->sign != other.sign)
         return this->sign > other.sign;
 
@@ -66,10 +66,10 @@ bool BigInt::operator>=(const BigInt& other) {
     return absComparison >= 0;
 }
 
-bool BigInt::operator<(const BigInt& other) {
+bool BigInt::operator<(const BigInt& other) const {
     return !(*this >= other);
 }
 
-bool BigInt::operator<=(const BigInt& other) {
+bool BigInt::operator<=(const BigInt& other) const {
     return !(*this > other);
 }

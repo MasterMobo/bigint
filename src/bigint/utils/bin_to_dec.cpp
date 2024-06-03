@@ -13,13 +13,13 @@ std::string binToDec(std::string num) {
 
     // The conversion will also work for other  number bases
     // For base > 10 you need to adapt the creation of the digit at the bottom
-    constexpr unsigned int numberBase{ 10 };
+    constexpr unsigned int numberBase = 10;
 
     // So, we will perfrom an integer division by 10, until the number is 0
     do {
 
         // The remainder is the digit that we are interested in
-        unsigned int remainder{};
+        unsigned int remainder = 0;
         // Temporary result of integer division
         std::string dividedNumberAsString{};
 
