@@ -8,13 +8,13 @@
 #include <climits>
 
 class BigInt
-{
-	private:
+{	public:
 		typedef unsigned long long int BaseType;
 		static const int BITS_PER_DIGIT = 32; 
 		static const BaseType RADIX = 4294967296; // 2^32 
 		static const BaseType MAX_DIGIT_VALUE = RADIX - 1; // 2^32 - 1. The maximum value each digit can hold.
-		
+	
+	private:
 		/*
 			Vector containing all the digits in little-endian (reversed) fashion.
 			Ex: 0x456 is represented as [6, 5, 4]
@@ -35,11 +35,14 @@ class BigInt
 
 	public:
 		BigInt();
-
+		BigInt(std::vector<BaseType>);
 		// BigInt from decimal string
 		BigInt(std::string s);
 
 		// TODO: add destructor
+
+		// Getters & Setters
+		std::vector<BaseType> getDigits() const {return digits;};
 
 		// String conversions
 		std::string toRawString();
@@ -48,7 +51,6 @@ class BigInt
 		static BigInt fromDecString(std::string s);
 		std::string toDecString();
 		
-		// TODO: make these private after implement sign in string conversion
 		void makePositive();
 		void makeNegative();
 
@@ -76,7 +78,6 @@ class BigInt
 		bool operator<=(const BigInt& other);
 
 	private:
-		BigInt(std::vector<BaseType>);
 		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
 };
 
