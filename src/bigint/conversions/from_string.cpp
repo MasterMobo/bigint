@@ -1,8 +1,8 @@
 #include "bigint/BigInt.h"
-#include "../utils/utils.h"
+#include "bigint/utils.h"
+#include "bigint/conversion/BinStringConverter.h"
+#include "bigint/conversion/DecStringConverter.h"
 
-#include "./classes/BinStringConverter.h"
-#include "./classes/DecStringConverter.h"
 
 #include <string>
 #include <iostream>

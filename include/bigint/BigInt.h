@@ -7,6 +7,8 @@
 #include <vector>
 #include <climits>
 
+// #include "./conversion/BinStringConverter.h"
+
 class BigInt
 {	public:
 		typedef unsigned long long int BaseType;
@@ -35,7 +37,6 @@ class BigInt
 
 	public:
 		BigInt();
-		BigInt(std::vector<BaseType>);
 		// BigInt from decimal string
 		BigInt(std::string s);
 
@@ -72,8 +73,6 @@ class BigInt
 		BigInt& operator--(); // Prefix decrement
 		BigInt operator--(int n);	// Postfix decrement
 		
-		// TODO: add more subtract operations
-
 		// Comparisons
 		signed char compareAbs(const BigInt& n1, const BigInt& n2) const;
 		bool operator==(const BigInt& other) const;
@@ -84,8 +83,13 @@ class BigInt
 		bool operator<=(const BigInt& other) const;
 
 	private:
+		BigInt(std::vector<BaseType>);
 		void addDigits(BaseType n1, BaseType n2, BaseType& sum, int& carry);
 		void subtractDigits(BaseType n1, BaseType n2, BaseType& diff, int& carry);
+	
+	// friend class StringEncoder;
+	// friend class StringDecoder;
+	friend class BinStringConverter;
 };
 
 #endif

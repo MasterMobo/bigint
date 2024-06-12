@@ -1,9 +1,9 @@
 #include "bigint/BigInt.h"
-#include "../utils/utils.h"
+#include "bigint/conversion/BinStringConverter.h"
+#include "bigint/conversion/DecStringConverter.h"
+#include "bigint/conversion/RawStringConverter.h"
 
-#include "./classes/BinStringConverter.h"
-#include "./classes/DecStringConverter.h"
-#include "./classes/RawStringConverter.h"
+#include "bigint/utils.h"
 
 #include <string>
 #include <climits>

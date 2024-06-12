@@ -4,10 +4,10 @@
 #define DEC_STRING_CONVERTER_H
 
 #include "bigint/BigInt.h"
-#include "./StringEncoder.h"
-#include "./StringDecoder.h"
-#include "./BinStringConverter.h"
-#include "../../utils/utils.h"
+#include "bigint/utils.h"
+#include "bigint/conversion/StringEncoder.h"
+#include "bigint/conversion/StringDecoder.h"
+#include "bigint/conversion/BinStringConverter.h"
 
 #include <string>
 

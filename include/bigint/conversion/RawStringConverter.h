@@ -4,7 +4,7 @@
 #define RAW_CONVERTER_H
 
 #include "bigint/BigInt.h"
-#include "./StringEncoder.h"
+#include "bigint/conversion/StringEncoder.h"
 #include <string>
 #include <vector>
 

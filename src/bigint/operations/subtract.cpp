@@ -1,5 +1,5 @@
 #include "bigint/BigInt.h"
-#include "../utils/utils.h"
+#include "bigint/utils.h"
 
 #include <iostream>
 #include <vector>
